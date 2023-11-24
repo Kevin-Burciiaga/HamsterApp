@@ -10,7 +10,7 @@
   <EditText
       android:id="@+id/nombre"
       android:layout_marginTop="20dp"
-      android:layout_width="wrap_content"
+      android:layout_width="300dp"
       android:layout_height="wrap_content"
       app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +22,7 @@
   <EditText
       android:id="@+id/ap"
       android:layout_marginTop="20dp"
-      android:layout_width="wrap_content"
+      android:layout_width="320dp"
       android:layout_height="wrap_content"
       app:layout_constraintTop_toBottomOf="@id/nombre"
       app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +34,7 @@
   <EditText
       android:id="@+id/am"
       android:layout_marginTop="20dp"
-      android:layout_width="wrap_content"
+      android:layout_width="320dp"
       android:layout_height="wrap_content"
       app:layout_constraintTop_toBottomOf="@id/ap"
       app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +46,7 @@
   <EditText
       android:id="@+id/email"
       android:layout_marginTop="20dp"
-      android:layout_width="wrap_content"
+      android:layout_width="320dp"
       android:layout_height="wrap_content"
       app:layout_constraintTop_toBottomOf="@id/am"
       app:layout_constraintStart_toStartOf="parent"
@@ -57,8 +57,9 @@
 
   <EditText
       android:id="@+id/password"
-      android:layout_width="wrap_content"
+      android:layout_width="320dp"
       android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
       android:hint="Contraseña"
       android:textSize="35sp"
       android:textStyle="italic"
@@ -71,12 +72,12 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="Registrarse"
-      android:textSize="18sp"
+      android:textSize="20sp"
       android:textStyle="italic"
       app:layout_constraintTop_toBottomOf="@id/password"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintBottom_toBottomOf="parent"/>
+      app:layout_constraintBottom_toBottomOf="parent" />
 
 
   </androidx.constraintlayout.widget.ConstraintLayout>
