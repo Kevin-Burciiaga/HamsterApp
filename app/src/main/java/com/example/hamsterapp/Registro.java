@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -94,17 +93,48 @@ public class Registro extends AppCompatActivity {
                     try {
                         String errorBody = response.errorBody().string();
                         Log.e("Registro", "Error en onResponse: " + errorBody);
+
+                        if (errorBody.contains("The email has already been taken.")) {
+                            Toast.makeText(Registro.this, "Error en el registro: El correo electrónico ya está registrado", Toast.LENGTH_SHORT).show();
+                        } else if (errorBody.contains("The ap m field is required.")) {
+                            Toast.makeText(Registro.this, "Error en el registro: Hay campos vacíos", Toast.LENGTH_SHORT).show();
+                        }
+                        else if (errorBody.contains("The ap p field is required.")) {
+                            Toast.makeText(Registro.this, "Error en el registro: Hay campos vacíos", Toast.LENGTH_SHORT).show();
+                        }
+                        else if (errorBody.contains("The name field is required.")) {
+                            Toast.makeText(Registro.this, "Error en el registro: Hay campos vacíos", Toast.LENGTH_SHORT).show();
+                        }
+                        else if (errorBody.contains("The password field is required.")) {
+                            Toast.makeText(Registro.this, "Error en el registro: Hay campos vacíos", Toast.LENGTH_SHORT).show();
+                        }
+                        else if (errorBody.contains("The password confirmation does not match.")) {
+                            Toast.makeText(Registro.this, "Error en el registro: Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+                        }
+                        else if (errorBody.contains("The name must be at least 3 characters.")) {
+                            Toast.makeText(Registro.this, "Error en el registro: El nombre debe de tener al menos 3 caracteres", Toast.LENGTH_SHORT).show();
+                        }
+                        else if (errorBody.contains("The ap m must be at least 3 characters.")) {
+                            Toast.makeText(Registro.this, "Error en el registro: El apellido debe de tener al menos 3 caracteres", Toast.LENGTH_SHORT).show();
+                        }
+                        else if (errorBody.contains("The ap p must be at least 3 characters.")) {
+                            Toast.makeText(Registro.this, "Error en el registro: El apellido debe de tener al menos 3 caracteres", Toast.LENGTH_SHORT).show();
+                        }
+                        else if (errorBody.contains("The password must be at least 8 characters.")) {
+                            Toast.makeText(Registro.this, "Error en el registro: La contraseña debe de tener al menos 8 caracteres", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            Toast.makeText(Registro.this, "Error en el registro: " + errorBody, Toast.LENGTH_SHORT).show();
+                        }
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    Toast.makeText(Registro.this, "Error en el registro", Toast.LENGTH_SHORT).show();
                 }
-                }
+            }
 
 
             @Override
             public void onFailure(Call<ApiResponse> call, Throwable t) {
-                // Dentro del método onFailure
                 Log.e("Registro", "Error en la conexión: " + t.getMessage(), t);
                 Toast.makeText(Registro.this, "Error en la conexión: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
