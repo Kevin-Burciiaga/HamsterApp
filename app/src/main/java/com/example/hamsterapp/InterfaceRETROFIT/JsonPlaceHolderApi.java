@@ -11,4 +11,5 @@ public interface JsonPlaceHolderApi {
 
     @POST("register")
     Call<ApiResponse> registerUser(@Body RegistroData registroData);
+
 }

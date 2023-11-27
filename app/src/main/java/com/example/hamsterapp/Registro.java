@@ -1,14 +1,11 @@
 package com.example.hamsterapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-
-import android.os.Bundle;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +14,8 @@ import com.example.hamsterapp.InterfaceRETROFIT.JsonPlaceHolderApi;
 import com.example.hamsterapp.ModelsRETROFIT.ApiResponse;
 import com.example.hamsterapp.ModelsRETROFIT.RegistroData;
 
+import java.io.IOException;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -24,9 +23,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import android.widget.EditText;
-
-import java.io.IOException;
 
 public class Registro extends AppCompatActivity {
 
