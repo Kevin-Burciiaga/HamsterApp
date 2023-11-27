@@ -22,7 +22,7 @@
         android:id="@+id/email"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:hint="Correo Electronico"
+        android:hint="Correo Electrónico"
         android:textSize="35sp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -48,13 +48,15 @@
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="200dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:textColor="@color/white"
         android:text="Iniciar Sesion"
         android:textSize="18sp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btnreg"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/password" />
 
@@ -62,12 +64,14 @@
         android:id="@+id/btnreg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/botones"
+        android:textColor="@color/white"
         android:text="Registrarse"
         android:textSize="18sp"
         android:textStyle="italic"
-        app:layout_constraintTop_toBottomOf="@id/password"
-        app:layout_constraintStart_toEndOf="@id/btnLogin"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

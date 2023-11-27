@@ -13,90 +13,87 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/txtC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.071">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:shadowColor="@color/black"
-            android:shadowDx="0"
-            android:shadowDy="2"
-            android:shadowRadius="5"
-            android:text="HAMSTERAPP"
-            android:textColor="@color/white"
-            android:textSize="45sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="5dp"
-            android:shadowColor="@color/black"
-            android:shadowDx="0"
-            android:shadowDy="2"
-            android:shadowRadius="5"
-            android:text="INTEGRADOR"
-            android:textColor="@color/white"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--
+      <TextView
+          android:id="@+id/textView4"
+          android:layout_width="65dp"
+          android:layout_height="65dp"
+          android:background="@drawable/box"
+          android:text="4"
+          android:textAlignment="center"
+          android:textColor="@color/black"
+          android:textSize="50sp"
+          android:textStyle="bold"
+          app:layout_constraintBottom_toTopOf="@+id/txtC"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+  -->
+
+   <!-- <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="219dp"
+        android:layout_height="259dp"
+        android:src="@drawable/logo"
+        app:layout_constraintBottom_toTopOf="@+id/txtC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/constraintLayout"
+        app:layout_constraintVertical_bias="1.0" /> -->
 
     <TextView
-        android:id="@+id/textView4"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:background="@drawable/box"
-        android:text="4"
-        android:textAlignment="center"
-        android:textColor="@color/black"
+          android:id="@+id/txtC"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:padding="5dp"
+          android:text="CARGANDO..."
+          android:textColor="@color/white"
+          android:textSize="25sp"
+          android:textStyle="bold"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+          app:layout_constraintVertical_bias="0.561" />
+
+      <com.airbnb.lottie.LottieAnimationView
+          android:layout_width="match_parent"
+          android:layout_height="200dp"
+          app:lottie_autoPlay="true"
+          app:lottie_loop="true"
+          app:lottie_rawRes="@raw/load"
+          app:layout_constraintTop_toBottomOf="@id/txtC"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:lottie_colorFilter="@color/black"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:shadowColor="@color/black"
+        android:shadowDx="15"
+        android:shadowDy="3"
+        android:shadowRadius="8"
+        android:text="HAMSTERAPP"
+        android:textColor="@color/white"
         android:textSize="50sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/txtC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
-
-    <TextView
-        android:id="@+id/txtC"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:text="CARGANDO..."
-        android:textColor="@color/white"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-        app:layout_constraintVertical_bias="0.561" />
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/load"
-        app:layout_constraintTop_toBottomOf="@id/txtC"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:lottie_colorFilter="@color/black"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

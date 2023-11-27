@@ -5,7 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Registro">
+    tools:context=".Registro"
+    android:background="@drawable/img_1">
 
   <EditText
       android:id="@+id/nombre"
@@ -15,7 +16,7 @@
       app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      android:hint="Nombres"
+      android:hint="Nombre"
       android:textSize="35sp"
       android:textStyle="italic"/>
 
@@ -67,17 +68,30 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/email" />
 
+  <EditText
+      android:id="@+id/password_confirmation"
+      android:layout_width="320dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:hint="Confirmar contraseña"
+      android:textSize="30sp"
+      android:textStyle="italic"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/password" />
+
   <Button
       android:id="@+id/reg"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
+      android:layout_width="250dp"
+      android:layout_height="70dp"
+      android:background="@drawable/botones"
       android:text="Registrarse"
       android:textSize="20sp"
       android:textStyle="italic"
-      app:layout_constraintTop_toBottomOf="@id/password"
-      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintBottom_toBottomOf="parent" />
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/password" />
 
 
   </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,7 +13,6 @@ public class Activity1Activity extends AppCompatActivity {
     RecyclerView recyclerView;
     ArrayList<Model> arrayList = new ArrayList<>();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
