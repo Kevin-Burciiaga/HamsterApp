@@ -4,20 +4,31 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:usesCleartextTraffic="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.HamsterApp"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".Agregar_Jaula"
+            android:exported="false" />
+        <activity
+            android:name=".Agregar_Animal"
+            android:exported="false" />
+        <activity
+            android:name=".Animales"
+            android:exported="false" />
+        <activity
+            android:name=".Animales_Rec"
+            android:exported="false" />
+        <activity
             android:name=".Jaulas"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".recyclerJaula"
             android:exported="false" />
