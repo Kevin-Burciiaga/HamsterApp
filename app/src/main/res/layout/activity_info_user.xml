@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:orientation="horizontal"
+        android:background="#FF804000"
+        android:gravity="center"
+        android:layout_marginBottom="40dp">
+
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:shadowColor="@color/black"
+            android:shadowDx="1"
+            android:shadowDy="3"
+            android:shadowRadius="5"
+            android:text="Tu información"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="35sp"
+            android:textStyle="bold"
+
+            />
+
+
+
+    </LinearLayout>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InfoUser">
+
+    <ImageView
+        android:id="@+id/hamster"
+        android:layout_width="183dp"
+        android:layout_height="187dp"
+        android:src="@drawable/hamster1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:id="@+id/txtNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tu nombre"
+        android:textSize="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/hamster"/>
+    <TextView
+        android:id="@+id/tname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cambiar nombre: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ename"
+        app:layout_constraintTop_toBottomOf="@id/txtNombre"
+        android:textSize="20dp"
+        android:layout_marginTop="40dp"
+        />
+
+
+    <EditText
+        android:id="@+id/ename"
+        android:layout_width="200dp"
+        android:layout_height="35dp"
+        app:layout_constraintStart_toEndOf="@id/tname"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtNombre"
+        android:layout_marginTop="40dp"
+        />
+
+
+    <TextView
+        android:id="@+id/tpass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cambiar contraseña: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ename"
+        app:layout_constraintTop_toBottomOf="@id/tname"
+        android:textSize="20dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginStart="30dp"
+        />
+
+    <EditText
+        android:id="@+id/pass1"
+        android:layout_width="150dp"
+        android:layout_height="45dp"
+        android:text="Anterior"
+        app:layout_constraintEnd_toStartOf="@id/pass2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tpass"
+        android:layout_marginTop="30dp"
+        />
+
+    <EditText
+        android:id="@+id/pass2"
+        android:layout_width="150dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="95dp"
+        android:text="Nueva"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/pass1"
+        app:layout_constraintTop_toBottomOf="@id/ename" />
+
+
+    <Button
+        android:id="@+id/cambiar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/botones"
+        android:text="CAMBIAR"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pass1"
+        android:layout_marginTop="30dp"/>
+
+    <Button
+        android:id="@+id/cerrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/botones"
+        android:text="CERRAR SESIÓN"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cambiar"
+        android:layout_marginTop="20dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
