@@ -18,7 +18,7 @@ public class Jaulas extends AppCompatActivity {
 RecyclerView recyclerView;
 ArrayList<Jaula> arrayList = new ArrayList<>();
 
-ImageView agregar, us;
+ImageView agregar, us, huella;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +27,17 @@ ImageView agregar, us;
         recyclerView=findViewById(R.id.recyclerview1);
         agregar = findViewById(R.id.agregar);
         us = findViewById(R.id.us);
+        huella = findViewById(R.id.huella);
         agregar.setOnClickListener(v -> {
             Intent i = new Intent(Jaulas.this,Agregar_Jaula.class);
             startActivity(i);
         });
         us.setOnClickListener(v -> {
             Intent i = new Intent(Jaulas.this,InfoUser.class);
+            startActivity(i);
+        });
+        huella.setOnClickListener(v -> {
+            Intent i = new Intent(Jaulas.this,Animales.class);
             startActivity(i);
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
