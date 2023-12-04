@@ -41,7 +41,7 @@ ImageView agregar, us, huella;
             startActivity(i);
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        arrayList.add(new Jaula(R.drawable.jaula,"Jaula 1"));
+        arrayList.add(new Jaula(R.drawable.jaula_c,"Jaula 1"));
 
         JaulaAdapter jaulasRecyclerView = new JaulaAdapter(this,arrayList);
         recyclerView.setAdapter(jaulasRecyclerView);
