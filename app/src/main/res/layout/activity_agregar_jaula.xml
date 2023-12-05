@@ -26,7 +26,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:textColorHint="@color/black"
-        android:background="@drawable/backg"
         android:textColor="@color/black"
         android:textSize="40sp"
         android:textStyle="italic"

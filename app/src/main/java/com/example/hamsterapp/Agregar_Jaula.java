@@ -17,7 +17,7 @@ String opcionSeleccionada;
         setContentView(R.layout.activity_agregar_jaula);
         spinner = findViewById(R.id.spinner);
 
-        String[] opciones = {"Conejo", "Cuyo"};
+        String[] opciones = {"Hamster", "Cuyo"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opciones);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
