@@ -76,7 +76,8 @@ EditText etEmail, etPassword;
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
                 if (response.isSuccessful()){
                     Toast.makeText(getApplicationContext(), "Login exitoso", Toast.LENGTH_SHORT).show();
-                    String token = response.body().getToken();
+                    ApiResponse apiResponse = response.body();
+                    String token = apiResponse.getToken();
                     Token.saveToken(Login.this,token);
                     Toast.makeText(getApplicationContext(), "Token: "+token, Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Login.this,Jaulas.class);

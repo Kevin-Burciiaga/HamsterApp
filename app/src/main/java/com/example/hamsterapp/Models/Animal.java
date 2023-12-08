@@ -1,30 +1,25 @@
 package com.example.hamsterapp.Models;
 
 public class Animal {
-    int image;
-    String nombre;
+    int id;
+    String Nombre;
 
-public Animal(int image, String nombre) {
-        this.image = image;
-        this.nombre = nombre;
+public Animal(String image, String nombre, int id) {
+        this.id = id;
+        this.Nombre = nombre;
+    }
+    public int getId() {
+        return id;
     }
 
-public int getImage() {
-        return image;
+    public void setId(int id) {
+        this.id = id;
+    }
+    public String getNombre() {
+        return Nombre;
     }
 
-public void setImage(int image) {
-        this.image = image;
+    public void setNombre(String nombre) {
+        this.Nombre = nombre;
     }
-
-public String getNombre() {
-        return nombre;
-    }
-
-public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-
-
 }
