@@ -4,7 +4,7 @@ public class Animal {
     int id;
     String Nombre;
 
-public Animal(String image, String nombre, int id) {
+public Animal( String nombre, int id) {
         this.id = id;
         this.Nombre = nombre;
     }

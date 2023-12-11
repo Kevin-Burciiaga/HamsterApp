@@ -35,7 +35,6 @@ public class AnimalesAdapter extends RecyclerView.Adapter<AnimalesAdapter.ViewHo
         return animalList.size();
     }
     public class ViewHolder extends RecyclerView.ViewHolder {
-
         TextView txtInfo;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

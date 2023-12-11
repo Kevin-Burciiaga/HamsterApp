@@ -58,6 +58,7 @@ public class Animales extends AppCompatActivity {
                     try{
                         String error = response.errorBody().string();
                         Toast.makeText(Animales.this,  error, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Animales.this,  "No hay animales", Toast.LENGTH_SHORT).show();
                     }
                      catch (IOException e) {
                         e.printStackTrace();

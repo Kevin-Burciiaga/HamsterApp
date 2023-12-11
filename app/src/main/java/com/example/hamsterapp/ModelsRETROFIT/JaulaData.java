@@ -2,17 +2,17 @@ package com.example.hamsterapp.ModelsRETROFIT;
 
 public class JaulaData {
     String name;
-    int animal_id;
+    String id_animal;
 
-    public JaulaData(String name, int animal_id) {
+    public JaulaData(String name, String animal_id) {
         this.name = name;
-        this.animal_id = animal_id;
+        this.id_animal = animal_id;
     }
 
     public String getName() {
         return name;
     }
-    public int getAnimal_id() {
-        return animal_id;
+    public String getAnimal_id() {
+        return id_animal;
     }
 }

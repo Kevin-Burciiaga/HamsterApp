@@ -26,12 +26,11 @@ public interface JsonPlaceHolderApi {
     @GET("animales")
     Call<AnimalResponse> getAnimals();
 
-
     @POST("jaula")
     Call<ApiResponse> addJaula(@Header("Authorization") String token, @Body JaulaData jaulaData);
 
-    @GET("user")
-    Call<JaulasResponse> getJaulas(@Header("Authorization") String token);
+    @GET("jaula/user")
+    Call<JaulasResponse>getJaulas(@Header("Authorization") String token);
 
     @PUT("users/update")
     Call<ApiResponse> updateUser(@Header("Authorization") String token, @Body UpdateUserData updateUserData);
