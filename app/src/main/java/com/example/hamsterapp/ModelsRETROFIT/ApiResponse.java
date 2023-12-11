@@ -1,11 +1,33 @@
 package com.example.hamsterapp.ModelsRETROFIT;
 
+import android.service.autofill.UserData;
+
+import java.util.List;
+
 public class ApiResponse {
     private String message;
     private String token;
     private String token_type;
     private long expires_in;
 
+    private List<String> messages;
+    private UserData data;
+
+    public List<String> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<String> messages) {
+        this.messages = messages;
+    }
+/*
+    public UserData getData() {
+        return data;
+    }
+*/
+    public void setData(UserData data) {
+        this.data = data;
+    }
 
     public String getToken() {
         return token;

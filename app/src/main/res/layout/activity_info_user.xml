@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/fondo_user">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,6 +16,13 @@
         android:gravity="center"
         android:layout_marginBottom="40dp">
 
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginStart="-40dp"
+            android:src="@drawable/pa_atras" />
 
         <TextView
             android:id="@+id/textView5"
@@ -67,14 +75,14 @@
         app:layout_constraintEnd_toStartOf="@id/ename"
         app:layout_constraintTop_toBottomOf="@id/txtNombre"
         android:textSize="20dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="50dp"
         />
 
 
     <EditText
         android:id="@+id/ename"
         android:layout_width="200dp"
-        android:layout_height="35dp"
+        android:layout_height="45dp"
         app:layout_constraintStart_toEndOf="@id/tname"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtNombre"
@@ -86,20 +94,20 @@
         android:id="@+id/tpass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cambiar contraseña: "
+        android:text="Cambiar apellidos: "
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/ename"
         app:layout_constraintTop_toBottomOf="@id/tname"
         android:textSize="20dp"
         android:layout_marginTop="45dp"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="10dp"
         />
 
     <EditText
         android:id="@+id/pass1"
         android:layout_width="150dp"
         android:layout_height="45dp"
-        android:text="Anterior"
+        android:hint="Paterno"
         app:layout_constraintEnd_toStartOf="@id/pass2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tpass"
@@ -111,7 +119,7 @@
         android:layout_width="150dp"
         android:layout_height="45dp"
         android:layout_marginTop="95dp"
-        android:text="Nueva"
+        android:hint="Materno"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/pass1"
         app:layout_constraintTop_toBottomOf="@id/ename" />
