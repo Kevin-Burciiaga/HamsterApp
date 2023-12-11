@@ -69,6 +69,11 @@ ImageView agregar, us, huella;
             public void onResponse(Call<JaulasResponse> call, Response<JaulasResponse> response) {
                 if (response.isSuccessful() && response.body() != null && response.body().getJaulas() != null) {
                     jaulaList = response.body().getJaulas();
+                    if (jaulaList.isEmpty()) {
+                        Toast.makeText(Jaulas.this, "No tienes jaulas", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Jaulas.this, "Agrega una", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     jaulaAdapter = new JaulaAdapter(getApplicationContext(), jaulaList);
                     recyclerView.setAdapter(jaulaAdapter);
                     Toast.makeText(Jaulas.this, "Jaulas cargadas correctamente", Toast.LENGTH_SHORT).show();
@@ -86,8 +91,6 @@ ImageView agregar, us, huella;
                             e.printStackTrace();
                         }
                     }
-                    Toast.makeText(Jaulas.this, "No tienes Jaulas", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(Jaulas.this, "Agrega una", Toast.LENGTH_SHORT).show();
                     Log.e("Jaulas", "Error: " + errorMessage);
                     Toast.makeText(Jaulas.this, errorMessage, Toast.LENGTH_SHORT).show();
                 }
