@@ -6,7 +6,10 @@ import com.example.hamsterapp.ModelsRETROFIT.JaulaData;
 import com.example.hamsterapp.ModelsRETROFIT.JaulasResponse;
 import com.example.hamsterapp.ModelsRETROFIT.LoginData;
 import com.example.hamsterapp.ModelsRETROFIT.RegistroData;
+import com.example.hamsterapp.ModelsRETROFIT.SensorData;
 import com.example.hamsterapp.ModelsRETROFIT.UpdateUserData;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -14,6 +17,8 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface JsonPlaceHolderApi {
 
@@ -34,5 +39,10 @@ public interface JsonPlaceHolderApi {
 
     @PUT("users/update")
     Call<ApiResponse> updateUser(@Header("Authorization") String token, @Body UpdateUserData updateUserData);
+
+    @GET("http/todos/{idJaula}")
+    Call<List<SensorData>> getSensorData(
+            @Path("idJaula") int idJaula, @Query("token") String token
+    );
 }
 

@@ -14,10 +14,11 @@
         android:orientation="horizontal"
         android:background="#FF804000"
         android:gravity="center"
-        android:layout_marginBottom="40dp">
+        android:layout_marginBottom="20dp">
 
 
         <ImageView
+            android:id="@+id/patras"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginEnd="50dp"

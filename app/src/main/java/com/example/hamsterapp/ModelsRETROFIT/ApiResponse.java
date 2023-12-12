@@ -1,6 +1,5 @@
 package com.example.hamsterapp.ModelsRETROFIT;
-
-import android.service.autofill.UserData;
+import com.example.hamsterapp.ModelsRETROFIT.UserData;
 
 import java.util.List;
 
@@ -20,11 +19,11 @@ public class ApiResponse {
     public void setMessages(List<String> messages) {
         this.messages = messages;
     }
-/*
+
     public UserData getData() {
         return data;
     }
-*/
+
     public void setData(UserData data) {
         this.data = data;
     }

@@ -1,17 +1,22 @@
 package com.example.hamsterapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.hamsterapp.InterfaceRETROFIT.JsonPlaceHolderApi;
+import com.example.hamsterapp.Models.Jaula;
 import com.example.hamsterapp.ModelsRETROFIT.ApiResponse;
 import com.example.hamsterapp.ModelsRETROFIT.UpdateUserData;
+import com.example.hamsterapp.ModelsRETROFIT.UserData;
 import com.example.hamsterapp.SharedPreferences.Token;
 
 import java.io.IOException;
@@ -38,8 +43,18 @@ public class InfoUser extends AppCompatActivity {
         editTextNombre = findViewById(R.id.ename);
         editTextApellidoPaterno = findViewById(R.id.pass1);
         editTextApellidoMaterno = findViewById(R.id.pass2);
-        /*txtNombre = findViewById(R.id.txtNombre);*/
+        TextView txtNombre = findViewById(R.id.txtNombre);
+        txtNombre.setText("");
 
+        ImageView imageViewAtras = findViewById(R.id.patras);
+        imageViewAtras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Inicia la actividad Jaula cuando se hace clic en la ImageView
+                Intent intent = new Intent(InfoUser.this, Jaula.class);
+                startActivity(intent);
+            }
+        });
         btnCambiar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,6 +69,8 @@ public class InfoUser extends AppCompatActivity {
             }
         });
     }
+
+
 
     private void actualizarUsuario() {
         String nombre = editTextNombre.getText().toString();
@@ -75,22 +92,26 @@ public class InfoUser extends AppCompatActivity {
         JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
         Call<ApiResponse> call = jsonPlaceHolderApi.updateUser("Bearer " + token, updateUserData);
 
+
+
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
                 if (response.isSuccessful()) {
 
                     ApiResponse apiResponse = response.body();
-                    /*
                     UserData userData = apiResponse.getData();
 
-                    String nombreActual = userData.getName();
-                    String apellidoPaternoActual = userData.getApP();
-                    String apellidoMaternoActual = userData.getApM();
+                    // Obtén el nuevo nombre completo del usuario
+                    String nuevoNombreCompleto = obtenerNombreCompleto(userData);
 
-                    String nombreCompleto = nombreActual + " " + apellidoPaternoActual + " " + apellidoMaternoActual;
+                    // Actualiza el TextView directamente
+                    TextView txtNombre = findViewById(R.id.txtNombre);
+                    txtNombre.setText(nuevoNombreCompleto);
 
-                    txtNombre.setText(nombreCompleto);*/
+                    editTextNombre.setText("");
+                    editTextApellidoPaterno.setText("");
+                    editTextApellidoMaterno.setText("");
                     Toast.makeText(InfoUser.this, "Usuario actualizado con éxito", Toast.LENGTH_SHORT).show();
                 } else {
                     try {
@@ -102,6 +123,14 @@ public class InfoUser extends AppCompatActivity {
                     }
                 }
             }
+
+
+
+            private String obtenerNombreCompleto(UserData userData) {
+
+                return userData.getName() + " " + userData.getApP() + " " + userData.getApM();
+            }
+
 
             @Override
             public void onFailure(Call<ApiResponse> call, Throwable t) {
