@@ -55,6 +55,8 @@ EditText etEmail, etPassword;
         String email = etEmail.getText().toString();
         String password = etPassword.getText().toString();
         if (email.isEmpty() || password.isEmpty()){
+            etEmail.setError("Llene el campo de correo");
+            etPassword.setError("Llene el campo de contraseña");
             Toast.makeText(getApplicationContext(), "Llene todos los campos", Toast.LENGTH_SHORT).show();
             return;
         }

@@ -2,14 +2,12 @@ package com.example.hamsterapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.hamsterapp.ModelsRETROFIT.SensorData;
 
 import com.example.hamsterapp.Adapters.JaulaAdapter;
 import com.example.hamsterapp.InterfaceRETROFIT.JsonPlaceHolderApi;
@@ -17,7 +15,6 @@ import com.example.hamsterapp.Models.Jaula;
 import com.example.hamsterapp.ModelsRETROFIT.JaulasResponse;
 import com.example.hamsterapp.SharedPreferences.Token;
 
-import java.io.IOException;
 import java.util.List;
 
 import okhttp3.OkHttpClient;
@@ -84,21 +81,22 @@ public class Jaulas extends AppCompatActivity {
             public void onResponse(Call<JaulasResponse> call, Response<JaulasResponse> response) {
                 if (response.isSuccessful() && response.body() != null && response.body().getJaulas() != null) {
                     jaulaList = response.body().getJaulas();
-
-                    // Configurar el adaptador
-                    jaulaAdapter = new JaulaAdapter(getApplicationContext(), jaulaList);
-                    recyclerView.setAdapter(jaulaAdapter);
-
-                    Toast.makeText(Jaulas.this, "Jaulas cargadas correctamente", Toast.LENGTH_SHORT).show();
+                    if (jaulaList.size() == 0) {
+                        Toast.makeText(Jaulas.this, "No hay jaulas registradas", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Jaulas.this, "Agrege una juala", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        jaulaAdapter = new JaulaAdapter(getApplicationContext(), jaulaList);
+                        recyclerView.setAdapter(jaulaAdapter);
+                        Toast.makeText(Jaulas.this, "Jaulas cargadas correctamente", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
-                    // Manejo de errores
                     Toast.makeText(Jaulas.this, "Error al cargar las jaulas", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<JaulasResponse> call, Throwable t) {
-                // Manejo de errores
                 Toast.makeText(Jaulas.this, "Error en la solicitud de jaulas", Toast.LENGTH_SHORT).show();
             }
         });

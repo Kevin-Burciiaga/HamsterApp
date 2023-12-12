@@ -1,5 +1,6 @@
 package com.example.hamsterapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -31,13 +33,22 @@ EditText ETnombre;
 private String opcionSeleccionada;
 private String selectedItem;
 Button btn1;
+ImageView atras;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_jaula);
+        atras = findViewById(R.id.atras);
         ETnombre = findViewById(R.id.nombre);
         spinner = findViewById(R.id.spinner);
         btn1 = findViewById(R.id.btn1);
+        atras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Agregar_Jaula.this, Jaulas.class);
+                startActivity(i);
+            }
+        });
 
         String[] opciones = {"Hamster", "Raton", "Cuyo", "Hurón"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opciones);
