@@ -22,7 +22,7 @@ public class SensorData {
     }
 
     public String getLastValue() {
-        return last_value;
+        return last_value.length() > 4 ? last_value.substring(0, 4) : last_value;
     }
 
     public void setLastValue(String lastValue) {

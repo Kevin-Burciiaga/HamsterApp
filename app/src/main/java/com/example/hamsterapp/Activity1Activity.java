@@ -76,7 +76,16 @@ public class Activity1Activity extends AppCompatActivity {
                             txtlu.setText(sensorData.getLastValue());
                             break;
                         case "rpm":
-                            txtVel.setText(sensorData.getLastValue());
+                            try {
+                                double rpmValue = Double.parseDouble(sensorData.getLastValue());
+
+                                double calculatedValue = (rpmValue * 10 * 3.1416) / (1000 * 60) * 60;
+
+                                txtVel.setText(String.valueOf(calculatedValue));
+                            } catch (NumberFormatException e) {
+                                Log.e("Activity1Activity", "Error al convertir el valor RPM a número");
+                                txtVel.setText("Error");
+                            }
                             break;
                         case "movimien":
                             txtmov.setText(sensorData.getLastValue());
