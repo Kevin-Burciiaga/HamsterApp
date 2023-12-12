@@ -65,12 +65,51 @@ public class InfoUser extends AppCompatActivity {
         btnCerrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                cerrarSesion();
+            }
+        });
 
+
+    }
+
+    private void cerrarSesion() {
+        String token = Token.getToken(InfoUser.this);
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://3.135.187.40/api/auth/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(new OkHttpClient.Builder().addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)).build())
+                .build();
+
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+        Call<Void> call = jsonPlaceHolderApi.logout("Bearer " + token);
+
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    Token.clearToken(InfoUser.this);
+
+                    Intent intent = new Intent(InfoUser.this, Login.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    try {
+                        String errorBody = response.errorBody().string();
+                        Log.e("InfoUser", "Error en onResponse: " + errorBody);
+                        Toast.makeText(InfoUser.this, "Error al cerrar sesión: " + errorBody, Toast.LENGTH_SHORT).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(InfoUser.this, "Error en la solicitud de cierre de sesión", Toast.LENGTH_SHORT).show();
             }
         });
     }
-
-
 
     private void actualizarUsuario() {
         String nombre = editTextNombre.getText().toString();

@@ -44,5 +44,8 @@ public interface JsonPlaceHolderApi {
     Call<List<SensorData>> getSensorData(
             @Path("idJaula") int idJaula, @Query("token") String token
     );
+
+    @POST("logout")
+    Call<Void> logout(@Header("Authorization") String token);
 }
 
