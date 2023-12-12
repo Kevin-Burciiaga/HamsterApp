@@ -88,8 +88,7 @@ public class Jaulas extends AppCompatActivity {
                     else {
                         jaulaAdapter = new JaulaAdapter(getApplicationContext(), jaulaList);
                         recyclerView.setAdapter(jaulaAdapter);
-                        Toast.makeText(Jaulas.this, "Jaulas cargadas correctamente", Toast.LENGTH_SHORT).show();
-                    }
+                        }
                 } else {
                     Toast.makeText(Jaulas.this, "Error al cargar las jaulas", Toast.LENGTH_SHORT).show();
                 }
