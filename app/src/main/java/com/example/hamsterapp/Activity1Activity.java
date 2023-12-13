@@ -1,6 +1,7 @@
 package com.example.hamsterapp;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +30,14 @@ public class Activity1Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity1);
 
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                prueba();
+                handler.postDelayed(this, 60000);
+            }
+        }, 60000);
 
         txtTemp = findViewById(R.id.txtTemp);
         txtHum = findViewById(R.id.txtHum);
@@ -109,5 +118,9 @@ public class Activity1Activity extends AppCompatActivity {
                 Log.e("API Failure", "Error in API call", t);
             }
         });
+    }
+
+    public void prueba(){
+        Toast.makeText(Activity1Activity.this, "Prueba tiempo 60", Toast.LENGTH_SHORT).show();
     }
 }

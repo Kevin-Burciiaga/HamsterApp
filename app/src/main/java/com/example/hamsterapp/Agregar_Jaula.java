@@ -2,7 +2,6 @@ package com.example.hamsterapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -10,24 +9,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
-import com.example.hamsterapp.InterfaceRETROFIT.JsonPlaceHolderApi;
-import com.example.hamsterapp.ModelsRETROFIT.ApiResponse;
-import com.example.hamsterapp.ModelsRETROFIT.JaulaData;
-import com.example.hamsterapp.SharedPreferences.Token;
-
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import com.example.hamsterapp.ViewModelss.Agregar_JualaViewModel;
 
 public class Agregar_Jaula extends AppCompatActivity {
+private Agregar_JualaViewModel model;
 Spinner spinner;
 EditText ETnombre;
 private String opcionSeleccionada;
@@ -42,6 +31,7 @@ ImageView atras;
         ETnombre = findViewById(R.id.nombre);
         spinner = findViewById(R.id.spinner);
         btn1 = findViewById(R.id.btn1);
+        model = new ViewModelProvider(this).get(Agregar_JualaViewModel.class);
         atras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,12 +58,16 @@ ImageView atras;
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                agregarJaula(view);
+                if (ETnombre.getText().toString().isEmpty()){
+                    ETnombre.setError("Llene el campo de nombre");
+                    return;
+                }
+                agregarJaulas(view);
             }
         });
     }
 
-    public void agregarJaula(View view){
+    public void agregarJaulas(View view){
         switch (selectedItem){
             case "Hamster":
                 opcionSeleccionada = "1";
@@ -91,60 +85,10 @@ ImageView atras;
                 opcionSeleccionada = "1";
                 break;
         }
-        String nombre = ETnombre.getText().toString();
-        String id = opcionSeleccionada;
-        if (nombre.isEmpty()){
-            ETnombre.setError("Llene el campo nombre");
-            Toast.makeText(getApplicationContext(), "Llene el campo nombre", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        JaulaData jaulaData = new JaulaData(nombre, id);
-        Log.d("Agregar_Jaula", "agregarJaula: "+jaulaData.getName());
-        Log.d("Agregar_Jaula", "agregarJaula: "+jaulaData.getAnimal_id());
-        String token = Token.getToken(Agregar_Jaula.this);
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://3.135.187.40/api/v1/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(new OkHttpClient.Builder().addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)).build())
-                .build();
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-        Call<ApiResponse> call = jsonPlaceHolderApi.addJaula("Bearer "+ token,jaulaData);
-        call.enqueue(new Callback<ApiResponse>() {
-            @Override
-            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
-                if (response.isSuccessful()){
-                    ApiResponse apiResponse = response.body();
-                    Toast.makeText(Agregar_Jaula.this, "Jaula Creada con exito", Toast.LENGTH_SHORT).show();
-                    String mensaje = apiResponse.getMessage();
-                    Toast.makeText(Agregar_Jaula.this, mensaje, Toast.LENGTH_SHORT).show();
-                    ETnombre.setText("");
-                    spinner.setSelection(0);
-                }
-                else {
-                    try {
-                        String error = response.errorBody().string();
-                        Log.e("Agregar_Jaula", "Error en onResponse: " + error);
-                        if (error.contains("The name field is required.")) {
-                         Toast.makeText(Agregar_Jaula.this, "Llene el campo nombre", Toast.LENGTH_SHORT).show();
-                        }
-                        if (error.contains("The id animal field is required.")) {
-                            Toast.makeText(Agregar_Jaula.this, "Seleccione un animal", Toast.LENGTH_SHORT).show();
-                        }
-                        else {
-                            Toast.makeText(Agregar_Jaula.this, "Error en el registro: " + error, Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                    catch (Exception e) {
-                        Toast.makeText(Agregar_Jaula.this, "Error en el registro", Toast.LENGTH_SHORT).show();
-                        e.printStackTrace();
-                    }
-                }
-            }
-            @Override
-            public void onFailure(Call<ApiResponse> call, Throwable t) {
-                Toast.makeText(Agregar_Jaula.this, "Error en la conexion", Toast.LENGTH_SHORT).show();
-                Log.e("Agregar_Jaula", "Error: " + t.getMessage());
-            }
-        });
+        model.setNombre(ETnombre.getText().toString());
+        model.setTipo(opcionSeleccionada);
+        model.agregarJaula(Agregar_Jaula.this);
+        ETnombre.setText("");
+        spinner.setSelection(0);
     }
 }

@@ -6,29 +6,19 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hamsterapp.Adapters.JaulaAdapter;
-import com.example.hamsterapp.InterfaceRETROFIT.JsonPlaceHolderApi;
 import com.example.hamsterapp.Models.Jaula;
-import com.example.hamsterapp.ModelsRETROFIT.JaulasResponse;
-import com.example.hamsterapp.SharedPreferences.Token;
+import com.example.hamsterapp.ViewModelss.JaulasViewModel;
 
 import java.util.List;
 
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
 public class Jaulas extends AppCompatActivity {
-
+private JaulasViewModel viewModel;
     private RecyclerView recyclerView;
-    private List<Jaula> jaulaList;
     private JaulaAdapter jaulaAdapter;
     ImageView agregar, us, huella;
 
@@ -41,6 +31,7 @@ public class Jaulas extends AppCompatActivity {
         agregar = findViewById(R.id.agregar);
         us = findViewById(R.id.us);
         huella = findViewById(R.id.huella);
+        viewModel = new ViewModelProvider(this).get(JaulasViewModel.class);
 
         agregar.setOnClickListener(v -> {
             Intent i = new Intent(Jaulas.this, Agregar_Jaula.class);
@@ -57,49 +48,24 @@ public class Jaulas extends AppCompatActivity {
             startActivity(i);
         });
 
+        viewModel.getJaulaList().observe(this, jaulaList -> {
+            actualizarLista(jaulaList);
+        });
+
+        viewModel.getErrorMessage().observe(this, errorMessage -> {
+            mostrarError(errorMessage);
+        });
+    }
+    private void actualizarLista(List<Jaula> jaulaList) {
+        RecyclerView recyclerView = findViewById(R.id.recyclerviewJaulas);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setHasFixedSize(true);
 
-        // Configurar el adaptador y escuchar clics en los elementos
-        configurarAdapter();
+        jaulaAdapter = new JaulaAdapter(getApplicationContext(), jaulaList);
+        recyclerView.setAdapter(jaulaAdapter);
     }
-
-    private void configurarAdapter() {
-        String token = Token.getToken(Jaulas.this);
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://3.135.187.40/api/v1/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(new OkHttpClient.Builder().addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)).build())
-                .build();
-
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-
-        // Obtener la lista de jaulas
-        jsonPlaceHolderApi.getJaulas("Bearer " + token).enqueue(new Callback<JaulasResponse>() {
-            @Override
-            public void onResponse(Call<JaulasResponse> call, Response<JaulasResponse> response) {
-                if (response.isSuccessful() && response.body() != null && response.body().getJaulas() != null) {
-                    jaulaList = response.body().getJaulas();
-                    if (jaulaList.size() == 0) {
-                        Toast.makeText(Jaulas.this, "No hay jaulas registradas", Toast.LENGTH_SHORT).show();
-                        Toast.makeText(Jaulas.this, "Agrege una juala", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
-                        jaulaAdapter = new JaulaAdapter(getApplicationContext(), jaulaList);
-                        recyclerView.setAdapter(jaulaAdapter);
-                        }
-                } else {
-                    Toast.makeText(Jaulas.this, "Error al cargar las jaulas", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<JaulasResponse> call, Throwable t) {
-                Toast.makeText(Jaulas.this, "Error en la solicitud de jaulas", Toast.LENGTH_SHORT).show();
-            }
-        });
+    private void mostrarError(String errorMessage) {
+        Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
     }
-
 
 }
