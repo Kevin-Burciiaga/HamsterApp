@@ -89,6 +89,7 @@ public class InfoUser extends AppCompatActivity {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
                     Token.clearToken(InfoUser.this);
+                    Token.saveIsLoggedIn(InfoUser.this, false);
 
                     Intent intent = new Intent(InfoUser.this, Login.class);
                     startActivity(intent);
