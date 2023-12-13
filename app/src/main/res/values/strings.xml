@@ -2,4 +2,6 @@
     <string name="app_name">HamsterApp</string>
     <string name="titulo_1">¿QUÉ DESEA REVISAR?</string>
     <string name="titulo_2">Tus Jaulas</string>
+    <string name="title_activity_timer_user_jaulas">Timer_User_Jaulas</string>
+    <string name="title_activity_main3">MainActivity3</string>
 </resources>

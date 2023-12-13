@@ -15,6 +15,19 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".TimerUserJaulas"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity3"
+            android:exported="false"
+            android:label="@string/title_activity_main3"
+            android:theme="@style/Theme.HamsterApp" />
+        <activity
+            android:name=".Timer_User_Jaulas"
+            android:exported="false"
+            android:label="@string/title_activity_timer_user_jaulas"
+            android:theme="@style/Theme.HamsterApp" />
+        <activity
             android:name=".InfoUser"
             android:exported="false" />
         <activity
