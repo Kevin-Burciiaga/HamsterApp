@@ -1,5 +1,7 @@
 package com.example.hamsterapp.RetrofitSingletonn;
 
+import com.example.hamsterapp.InterfaceRETROFIT.JsonPlaceHolderApi;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -24,5 +26,9 @@ public class Singleton {
         }
 
         return retrofitInstance;
+    }
+
+    public static JsonPlaceHolderApi getJsonPlaceHolderApi() {
+        return getRetrofitInstance().create(JsonPlaceHolderApi.class);
     }
 }

@@ -7,37 +7,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.hamsterapp.InterfaceRETROFIT.JsonPlaceHolderApi;
 import com.example.hamsterapp.ModelsRETROFIT.SensorData;
+import com.example.hamsterapp.RetrofitSingletonn.Singleton;
 import com.example.hamsterapp.SharedPreferences.Token;
+import com.example.hamsterapp.ViewModelss.Activity1ViewModel;
 
 import java.util.List;
 
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
 public class Activity1Activity extends AppCompatActivity {
+
+    private Activity1ViewModel viewModel;
     private TextView txtTemp, txtHum, txtVel, txtlu, txtinf, txtmov, txtuts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity1);
-
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                prueba();
-                handler.postDelayed(this, 60000);
-            }
-        }, 60000);
 
         txtTemp = findViewById(R.id.txtTemp);
         txtHum = findViewById(R.id.txtHum);
@@ -48,79 +36,80 @@ public class Activity1Activity extends AppCompatActivity {
         txtuts = findViewById(R.id.txtuts);
 
 
+        viewModel = new ViewModelProvider(this).get(Activity1ViewModel.class);
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //prueba();
+                handler.postDelayed(this, 60000);
+            }
+        }, 60000);
+
         String token = Token.getToken(Activity1Activity.this);
+        int idJaula = 7;
 
-        int idJaula = 1;
+        JsonPlaceHolderApi jsonPlaceHolderApi = Singleton.getRetrofitInstance().create(JsonPlaceHolderApi.class);
 
+        viewModel.fetchSensorData(idJaula, token );
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://3.135.187.40/api/v1/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(new OkHttpClient.Builder().addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)).build())
-                .build();
+        viewModel.getSensorDataList().observe(this, sensorDataList -> {
+            updateUI(sensorDataList);
+        });
 
-
-        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-
-
-        Call<List<SensorData>> call = jsonPlaceHolderApi.getSensorData(idJaula, token);
-        call.enqueue(new Callback<List<SensorData>>() {
-            @Override
-            public void onResponse(Call<List<SensorData>> call, Response<List<SensorData>> response) {
-                if (!response.isSuccessful()) {
-                    Log.e("API Response", "Error: " + response.code());
-                    return;
-                }
-                List<SensorData> sensorDataList = response.body();
-
-                for (SensorData sensorData : sensorDataList) {
-                    switch (sensorData.getSensor()) {
-                        case "temperatura":
-                            txtTemp.setText(sensorData.getLastValue());
-                            break;
-                        case "humedad":
-                            txtHum.setText(sensorData.getLastValue());
-                            break;
-                        case "luzsensor":
-                            txtlu.setText(sensorData.getLastValue());
-                            break;
-                        case "rpm":
-                            try {
-                                double rpmValue = Double.parseDouble(sensorData.getLastValue());
-
-                                double calculatedValue = (rpmValue * 10 * 3.1416) / (1000 * 60) * 60;
-
-                                txtVel.setText(String.valueOf(calculatedValue));
-                            } catch (NumberFormatException e) {
-                                Log.e("Activity1Activity", "Error al convertir el valor RPM a número");
-                                txtVel.setText("Error");
-                            }
-                            break;
-                        case "movimien":
-                            txtmov.setText(sensorData.getLastValue());
-                            break;
-                        case "ultrasonico":
-                            txtuts.setText(sensorData.getLastValue());
-                            break;
-                        case "infrarrojo":
-                            txtinf.setText(sensorData.getLastValue());
-                            break;
-                        default:
-                            Log.w("API Response", "Sensor desconocido: " + sensorData.getSensor());
-                            break;
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<SensorData>> call, Throwable t) {
-                Toast.makeText(Activity1Activity.this, "Error", Toast.LENGTH_SHORT).show();
-                Log.e("API Failure", "Error in API call", t);
-            }
+        viewModel.getErrorMessage().observe(this, errorMessage -> {
+            Toast.makeText(Activity1Activity.this, errorMessage, Toast.LENGTH_SHORT).show();
         });
     }
 
-    public void prueba(){
+    private void updateUI(List<SensorData> sensorDataList) {
+        for (SensorData sensorData : sensorDataList) {
+            switch (sensorData.getSensor()) {
+                case "temperatura":
+                    txtTemp.setText(sensorData.getLastValue()+ "°C");
+                    break;
+                case "humedad":
+                    txtHum.setText(sensorData.getLastValue() + "%");
+                    break;
+                case "luzsensor":
+                    txtlu.setText(sensorData.getLastValue());
+                    break;
+                case "rpm":
+                    try {
+                        double rpmValue = Double.parseDouble(sensorData.getLastValue());
+                        txtVel.setText(rpmValue + "rpm");
+                    } catch (NumberFormatException e) {
+                        Log.w("API Response", "Error al convertir a double: " + sensorData.getLastValue());
+                    }
+                case "movimien":
+                    if (sensorData.getLastValue().equals("1")) {
+                        txtmov.setText("Moviento detectado");
+                    }
+                    else{
+                        txtmov.setText("Sin movimiento");
+                    }
+                    break;
+                case "ultrasonico":
+                    txtuts.setText(sensorData.getLastValue() + "cm");
+                    break;
+                case "infrarrojo":
+                    if (sensorData.getLastValue().equals("1")) {
+                      txtinf.setText("Infrarrojo detectado");
+                    }
+                    else{
+                        txtinf.setText("Sin infrarrojo");
+                    }
+                    break;
+                default:
+                    Log.w("API Response", "Sensor desconocido: " + sensorData.getSensor());
+                    break;
+            }
+        }
+    }
+
+
+    public void prueba() {
         Toast.makeText(Activity1Activity.this, "Prueba tiempo 60", Toast.LENGTH_SHORT).show();
     }
 }

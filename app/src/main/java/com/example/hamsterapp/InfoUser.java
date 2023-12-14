@@ -70,10 +70,17 @@ public class InfoUser extends AppCompatActivity {
             }
         });
 
+        infoUserViewModel.getErrorMessage().observe(this, errorMessage -> {
+            Toast.makeText(InfoUser.this, errorMessage, Toast.LENGTH_SHORT).show();
+        });
+
         btnCerrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 infoUserViewModel.cerrarSesion();
+                Intent intent = new Intent(InfoUser.this, MainActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 

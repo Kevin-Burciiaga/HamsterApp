@@ -73,9 +73,9 @@ public void login(Context context){
                     if (errorBody.contains("Sin autorizacion, revise sus datos")) {
                         Toast.makeText(context, "Verifique sus datos", Toast.LENGTH_SHORT).show();
                     }
-
                     else {
-                        Toast.makeText(context, "Error en el registro: " + errorBody, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Activa tu cuenta", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Se envio un correo de activación", Toast.LENGTH_SHORT).show();
                     }
 
                 } catch (IOException e) {

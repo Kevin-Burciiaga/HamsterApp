@@ -20,7 +20,7 @@ public class Jaulas extends AppCompatActivity {
 private JaulasViewModel viewModel;
     private RecyclerView recyclerView;
     private JaulaAdapter jaulaAdapter;
-    ImageView agregar, us, huella;
+    ImageView agregar, us;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,6 @@ private JaulasViewModel viewModel;
         recyclerView = findViewById(R.id.recyclerviewJaulas);
         agregar = findViewById(R.id.agregar);
         us = findViewById(R.id.us);
-        huella = findViewById(R.id.huella);
         viewModel = new ViewModelProvider(this).get(JaulasViewModel.class);
 
         agregar.setOnClickListener(v -> {
@@ -43,13 +42,13 @@ private JaulasViewModel viewModel;
             startActivity(i);
         });
 
-        huella.setOnClickListener(v -> {
-            Intent i = new Intent(Jaulas.this, Animales.class);
-            startActivity(i);
-        });
-
         viewModel.getJaulaList().observe(this, jaulaList -> {
-            actualizarLista(jaulaList);
+            if (jaulaList == null || jaulaList.isEmpty()) {
+                Toast.makeText(this, "No tienes jaulas", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Agrega una jaula", Toast.LENGTH_SHORT).show();
+            } else {
+                actualizarLista(jaulaList);
+            }
         });
 
         viewModel.getErrorMessage().observe(this, errorMessage -> {
