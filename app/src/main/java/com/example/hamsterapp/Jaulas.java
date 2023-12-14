@@ -55,7 +55,7 @@ private JaulasViewModel viewModel;
         viewModel.getErrorMessage().observe(this, errorMessage -> {
             mostrarError(errorMessage);
         });
-
+        revisarSesion();
     }
     private void actualizarLista(List<Jaula> jaulaList) {
         RecyclerView recyclerView = findViewById(R.id.recyclerviewJaulas);
