@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hamsterapp.Adapters.JaulaAdapter;
 import com.example.hamsterapp.Models.Jaula;
+import com.example.hamsterapp.SharedPreferences.Token;
 import com.example.hamsterapp.ViewModelss.JaulasViewModel;
 
 import java.util.List;
@@ -54,6 +55,7 @@ private JaulasViewModel viewModel;
         viewModel.getErrorMessage().observe(this, errorMessage -> {
             mostrarError(errorMessage);
         });
+
     }
     private void actualizarLista(List<Jaula> jaulaList) {
         RecyclerView recyclerView = findViewById(R.id.recyclerviewJaulas);
@@ -65,6 +67,14 @@ private JaulasViewModel viewModel;
     }
     private void mostrarError(String errorMessage) {
         Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
+    }
+
+    public void revisarSesion(){
+        if (!Token.getIsLoggedIn(Jaulas.this)){
+            Intent intent = new Intent(Jaulas.this,Login.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
 }

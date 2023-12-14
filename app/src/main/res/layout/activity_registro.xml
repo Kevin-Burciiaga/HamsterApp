@@ -8,149 +8,168 @@
     tools:context=".Registro"
     android:background="@drawable/img_1">
 
-  <LinearLayout
-      android:id="@+id/linearLayout"
+  <ScrollView
       android:layout_width="match_parent"
-      android:layout_height="90dp"
-      android:orientation="horizontal"
-      android:background="#FF804000"
-      android:gravity="center"
+      android:layout_height="match_parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      >
+      app:layout_constraintBottom_toBottomOf="parent">
 
-
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:shadowColor="@color/black"
-        android:shadowDx="1"
-        android:shadowDy="3"
-        android:shadowRadius="5"
-        android:text="Registro"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="50sp"
-        android:textStyle="bold"
+        >
 
-        />
+      <LinearLayout
+          android:id="@+id/linearLayout"
+          android:layout_width="match_parent"
+          android:layout_height="90dp"
+          android:orientation="horizontal"
+          android:background="#FF804000"
+          android:gravity="center"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          >
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:shadowColor="@color/black"
+            android:shadowDx="1"
+            android:shadowDy="3"
+            android:shadowRadius="5"
+            android:text="Registro"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="50sp"
+            android:textStyle="bold"
+
+            />
 
 
-  </LinearLayout>
+      </LinearLayout>
 
-  <EditText
-      android:id="@+id/nombre"
-      android:layout_marginTop="60dp"
-      android:layout_width="300dp"
-      android:layout_height="wrap_content"
-      android:background="@drawable/backg"
-      android:textColor="@color/black"
-      android:textColorHint="@color/black1"
-      android:paddingStart="20dp"
-      app:layout_constraintTop_toBottomOf="@id/linearLayout"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      android:hint="Nombre"
-      android:textSize="27sp"
-      android:textStyle="italic"/>
 
-  <EditText
-      android:id="@+id/ap"
-      android:layout_marginTop="20dp"
-      android:layout_width="320dp"
-      android:layout_height="wrap_content"
-      android:background="@drawable/backg"
-      android:textColor="@color/black"
-      android:textColorHint="@color/black1"
-      android:paddingStart="20dp"
-      app:layout_constraintTop_toBottomOf="@id/nombre"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      android:hint="Apellido paterno"
-      android:textSize="27sp"
-      android:textStyle="italic"/>
+      <EditText
+          android:id="@+id/nombre"
+          android:layout_marginTop="60dp"
+          android:layout_width="300dp"
+          android:layout_height="wrap_content"
+          android:background="@drawable/backg"
+          android:textColor="@color/black"
+          android:textColorHint="@color/black1"
+          android:paddingStart="20dp"
+          app:layout_constraintTop_toBottomOf="@id/linearLayout"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          android:hint="Nombre"
+          android:textSize="27sp"
+          android:textStyle="italic"/>
 
-  <EditText
-      android:id="@+id/am"
-      android:layout_marginTop="20dp"
-      android:layout_width="320dp"
-      android:layout_height="wrap_content"
-      android:background="@drawable/backg"
-      android:textColor="@color/black"
-      android:textColorHint="@color/black1"
-      android:paddingStart="20dp"
-      app:layout_constraintTop_toBottomOf="@id/ap"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      android:hint="Apellido materno"
-      android:textSize="27sp"
-      android:textStyle="italic"/>
+      <EditText
+          android:id="@+id/ap"
+          android:layout_marginTop="20dp"
+          android:layout_width="320dp"
+          android:layout_height="wrap_content"
+          android:background="@drawable/backg"
+          android:textColor="@color/black"
+          android:textColorHint="@color/black1"
+          android:paddingStart="20dp"
+          app:layout_constraintTop_toBottomOf="@id/nombre"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          android:hint="Apellido paterno"
+          android:textSize="27sp"
+          android:textStyle="italic"/>
 
-  <EditText
-      android:id="@+id/email"
-      android:layout_marginTop="20dp"
-      android:layout_width="320dp"
-      android:layout_height="wrap_content"
-      android:background="@drawable/backg"
-      android:textColor="@color/black"
-      android:textColorHint="@color/black1"
-      android:paddingStart="20dp"
-      app:layout_constraintTop_toBottomOf="@id/am"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      android:hint="Correo electrónico"
-      android:textSize="27sp"
-      android:textStyle="italic"/>
+      <EditText
+          android:id="@+id/am"
+          android:layout_marginTop="20dp"
+          android:layout_width="320dp"
+          android:layout_height="wrap_content"
+          android:background="@drawable/backg"
+          android:textColor="@color/black"
+          android:textColorHint="@color/black1"
+          android:paddingStart="20dp"
+          app:layout_constraintTop_toBottomOf="@id/ap"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          android:hint="Apellido materno"
+          android:textSize="27sp"
+          android:textStyle="italic"/>
 
-  <EditText
-      android:id="@+id/password"
-      android:layout_width="320dp"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="20dp"
-      android:inputType="textPassword"
-      android:hint="Contraseña"
-      android:background="@drawable/backg"
-      android:textColor="@color/black"
-      android:textColorHint="@color/black1"
-      android:paddingStart="20dp"
-      android:textSize="27sp"
-      android:textStyle="italic"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/email" />
+      <EditText
+          android:id="@+id/email"
+          android:layout_marginTop="20dp"
+          android:layout_width="320dp"
+          android:layout_height="wrap_content"
+          android:background="@drawable/backg"
+          android:textColor="@color/black"
+          android:textColorHint="@color/black1"
+          android:paddingStart="20dp"
+          app:layout_constraintTop_toBottomOf="@id/am"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          android:hint="Correo electrónico"
+          android:textSize="27sp"
+          android:textStyle="italic"/>
 
-  <EditText
-      android:id="@+id/password_confirmation"
-      android:layout_width="320dp"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="20dp"
-      android:inputType="textPassword"
-      android:hint="Confirmar contraseña"
-      android:background="@drawable/backg"
-      android:textColor="@color/black"
-      android:textColorHint="@color/black1"
-      android:paddingStart="20dp"
-      android:textSize="27sp"
-      android:textStyle="italic"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/password" />
+      <EditText
+          android:id="@+id/password"
+          android:layout_width="320dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="20dp"
+          android:inputType="textPassword"
+          android:hint="Contraseña"
+          android:background="@drawable/backg"
+          android:textColor="@color/black"
+          android:textColorHint="@color/black1"
+          android:paddingStart="20dp"
+          android:textSize="27sp"
+          android:textStyle="italic"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/email" />
 
-  <Button
-      android:id="@+id/reg"
-      android:layout_marginTop="40dp"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:background="@drawable/botones"
-      android:text="Registrarse"
-      android:textSize="18sp"
-      android:textStyle="italic"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/password" />
+      <EditText
+          android:id="@+id/password_confirmation"
+          android:layout_width="320dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="20dp"
+          android:inputType="textPassword"
+          android:hint="Confirmar contraseña"
+          android:background="@drawable/backg"
+          android:textColor="@color/black"
+          android:textColorHint="@color/black1"
+          android:paddingStart="20dp"
+          android:textSize="27sp"
+          android:textStyle="italic"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/password" />
+
+      <Button
+          android:id="@+id/reg"
+          android:layout_marginTop="120dp"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:background="@drawable/botones"
+          android:text="Registrarse"
+          android:textSize="18sp"
+          android:textStyle="italic"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/password" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+  </ScrollView>
+
+
+
 
   </androidx.constraintlayout.widget.ConstraintLayout>

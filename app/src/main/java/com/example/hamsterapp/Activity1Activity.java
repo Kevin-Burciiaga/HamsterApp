@@ -42,13 +42,12 @@ public class Activity1Activity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                //prueba();
                 handler.postDelayed(this, 60000);
             }
         }, 60000);
 
         String token = Token.getToken(Activity1Activity.this);
-        int idJaula = 7;
+        int idJaula = 1;
 
         JsonPlaceHolderApi jsonPlaceHolderApi = Singleton.getRetrofitInstance().create(JsonPlaceHolderApi.class);
 
@@ -108,8 +107,4 @@ public class Activity1Activity extends AppCompatActivity {
         }
     }
 
-
-    public void prueba() {
-        Toast.makeText(Activity1Activity.this, "Prueba tiempo 60", Toast.LENGTH_SHORT).show();
-    }
 }

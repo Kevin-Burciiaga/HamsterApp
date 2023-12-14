@@ -18,6 +18,7 @@ import com.example.hamsterapp.ViewModelss.InfoUserViewModel;
 
 public class InfoUser extends AppCompatActivity {
     private InfoUserViewModel infoUserViewModel;
+    private InfoUserViewModel viewModel;
     private Button btnCambiar, btnCerrar;
     private EditText editTextNombre, editTextApellidoPaterno, editTextApellidoMaterno;
     private String obtenerNombreCompleto(UserData userData) {
@@ -27,8 +28,8 @@ public class InfoUser extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_user);
-
         infoUserViewModel = new ViewModelProvider(this).get(InfoUserViewModel.class);
+
 
         btnCambiar = findViewById(R.id.cambiar);
         btnCerrar = findViewById(R.id.cerrar);
@@ -67,6 +68,10 @@ public class InfoUser extends AppCompatActivity {
             if (userData != null) {
                 String nombreCompleto = obtenerNombreCompleto(userData);
                 txtNombre.setText(nombreCompleto);
+                // Actualiza los EditText con los valores correspondientes
+                editTextNombre.setText(userData.getName());
+                editTextApellidoPaterno.setText(userData.getApP());
+                editTextApellidoMaterno.setText(userData.getApM());
             }
         });
 
@@ -87,14 +92,27 @@ public class InfoUser extends AppCompatActivity {
         infoUserViewModel.getErrorMessage().observe(this, errorMessage -> {
             Toast.makeText(InfoUser.this, errorMessage, Toast.LENGTH_SHORT).show();
         });
-    }
+
+        infoUserViewModel.setInfoo(InfoUser.this);
+        infoUserViewModel.getNam().observe(this, name -> {
+            editTextNombre.setText(name);
+        });
+        infoUserViewModel.getApP().observe(this, apP -> {
+            editTextApellidoPaterno.setText(apP);
+        });
+        infoUserViewModel.getApM().observe(this, apM -> {
+            editTextApellidoMaterno.setText(apM);
+        });
+        infoUserViewModel.getNom().observe(this, nombre -> {
+            txtNombre.setText(nombre);
+        });
+        }
 
     private UpdateUserData obtenerDatosUsuario() {
         String nombre = editTextNombre.getText().toString();
         String apellidoPaterno = editTextApellidoPaterno.getText().toString();
         String apellidoMaterno = editTextApellidoMaterno.getText().toString();
+
         return new UpdateUserData(nombre, apellidoPaterno, apellidoMaterno);
     }
-
-
 }

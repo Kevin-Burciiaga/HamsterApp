@@ -2,6 +2,7 @@
 package com.example.hamsterapp.ViewModelss;
 
 import android.app.Application;
+import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.hamsterapp.InterfaceRETROFIT.JsonPlaceHolderApi;
 import com.example.hamsterapp.ModelsRETROFIT.ApiResponse;
+import com.example.hamsterapp.ModelsRETROFIT.InfoUsuario;
 import com.example.hamsterapp.ModelsRETROFIT.UpdateUserData;
 import com.example.hamsterapp.ModelsRETROFIT.UserData;
 import com.example.hamsterapp.RetrofitSingletonn.RetrofitSingleton;
@@ -22,6 +24,11 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class InfoUserViewModel extends AndroidViewModel {
+
+    private final MutableLiveData<String> nombre = new MutableLiveData<>();
+    private final MutableLiveData<String> name = new MutableLiveData<>();
+    private final MutableLiveData<String> apP = new MutableLiveData<>();
+    private final MutableLiveData<String> apM = new MutableLiveData<>();
     private final MutableLiveData<String> errorMessage = new MutableLiveData<>();
     private final MutableLiveData<Boolean> updateSuccessLiveData = new MutableLiveData<>();
     private final MutableLiveData<UserData> userDataLiveData = new MutableLiveData<>();
@@ -30,7 +37,7 @@ public class InfoUserViewModel extends AndroidViewModel {
 
     public InfoUserViewModel(@NonNull Application application) {
         super(application);
-        Retrofit retrofit = Singleton.getRetrofitInstance(); // Cambiado al Singleton específico para actualizar
+        Retrofit retrofit = RetrofitSingleton.getRetrofitInstance(); // Cambiado al Singleton específico para actualizar
         jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
     }
 
@@ -115,6 +122,55 @@ public class InfoUserViewModel extends AndroidViewModel {
             }
         });
     }
+
+    public MutableLiveData<String> getNom() {
+        return nombre;
+    }
+
+    public MutableLiveData<String> getNam() {
+        return name;
+    }
+    public MutableLiveData<String> getApP() {
+        return apP;
+    }
+
+    public MutableLiveData<String> getApM() {
+        return apM;
+    }
+
+    public void setInfoo(Context context){
+        String token = Token.getToken(context);
+        Retrofit retrofit = RetrofitSingleton.getRetrofitInstance();
+        JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
+        jsonPlaceHolderApi.getUser("Bearer " + token).enqueue(new Callback<InfoUsuario>() {
+
+
+            @Override
+            public void onResponse(Call<InfoUsuario> call, Response<InfoUsuario> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    name.setValue(response.body().getName());
+                    apP.setValue(response.body().getApP());
+                    apM.setValue(response.body().getApM());
+                    nombre.setValue(response.body().getName() + " " + response.body().getApP() + " " + response.body().getApM());
+                }
+                else {
+                    try {
+                        String error = response.errorBody().string();
+                        errorMessage.setValue(error);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<InfoUsuario> call, Throwable t) {
+                errorMessage.setValue("Error en la solicitud de animales");
+                Log.e("Error", t.getMessage());
+            }
+        });
+    }
+
 }
 
 
