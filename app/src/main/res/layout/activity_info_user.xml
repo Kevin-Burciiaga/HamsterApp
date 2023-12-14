@@ -62,25 +62,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/hamster"
-                android:layout_width="183dp"
-                android:layout_height="187dp"
-                android:src="@drawable/hamster1"
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animacionhamster"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/user"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="20dp" />
             <TextView
                 android:id="@+id/txtNombre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:text="Tu nombre"
+                android:shadowColor="@color/black"
+                android:shadowDx="15"
+                android:shadowDy="3"
+                android:shadowRadius="8"
                 android:textColor="@color/white"
-                android:textSize="30dp"
+                android:textSize="25sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/hamster"/>
+                app:layout_constraintTop_toBottomOf="@id/animacionhamster"/>
             <TextView
                 android:id="@+id/tname"
                 android:layout_width="wrap_content"
@@ -93,7 +100,6 @@
                 android:layout_marginTop="50dp"
                 android:textStyle="bold"
                 />
-
 
             <EditText
                 android:id="@+id/ename"

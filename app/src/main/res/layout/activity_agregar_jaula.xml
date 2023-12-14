@@ -50,22 +50,22 @@
             <EditText
                 android:id="@+id/nombre"
                 android:layout_width="300dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50sp"
                 android:layout_marginTop="100dp"
                 android:textColorHint="@color/black"
                 android:textColor="@color/black"
-                android:textSize="40sp"
+                android:textSize="25sp"
                 android:textStyle="italic"
-                android:hint="Nombre"
+                android:hint="Nombre de su jaula"
                 android:textAlignment="center"
                 android:layout_gravity="center"
                 android:background="@drawable/backg" />
 
             <Spinner
                 android:id="@+id/spinner"
-                android:layout_width="260dp"
+                android:layout_width="300dp"
                 android:layout_height="60dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/box"
                 android:layout_gravity="center"
                 android:textAlignment="center"
@@ -76,10 +76,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Agregar"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/botones"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:layout_gravity="center"/>
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animacionhamster"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/aggjaul"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp" />
 
         </LinearLayout>
 

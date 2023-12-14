@@ -14,12 +14,9 @@ public class TimerUserJaulas extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer_user_jaulas);
 
-        TextView txtTimer = findViewById(R.id.txtTimer);
-
-        CountDownTimer countDownTimer = new CountDownTimer(5000,1000) {
-            @Override
+        CountDownTimer countDownTimer = new CountDownTimer(2000,1000) {
             public void onTick(long millisUntilFinished) {
-                txtTimer.setText("" + millisUntilFinished/1000);
+
             }
 
             @Override

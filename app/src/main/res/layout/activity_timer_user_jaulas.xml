@@ -5,34 +5,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TimerUserJaulas"
-    android:background="@drawable/fondo">
+    android:background="@drawable/img_1">
 
     <TextView
         android:id="@+id/gracias"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Gracias por esperar!"
-        android:textColor="@color/black"
+        android:text="Cargando tus jaulas..."
+        android:padding="5dp"
+        android:shadowColor="@color/black"
+        android:shadowDx="15"
+        android:shadowDy="3"
+        android:shadowRadius="8"
+        android:textColor="@color/white"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/txtTimer"
-        android:textSize="60dp"
-        android:background="@drawable/backg"
+        app:layout_constraintBottom_toTopOf="@+id/animacionhamster"
+        android:textSize="28dp"
         android:textStyle="bold"
         android:layout_marginTop="100dp"/>
 
-    <TextView
-        android:id="@+id/txtTimer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tiempo"
-        android:textSize="30dp"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/gracias"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="@drawable/backg"/>
+    <com.airbnb.lottie.LottieAnimationView
+    android:id="@+id/animacionhamster"
+    android:layout_width="300dp"
+    android:layout_height="300dp"
+    app:lottie_autoPlay="true"
+    app:lottie_loop="true"
+    app:lottie_rawRes="@raw/si"
+    app:layout_constraintTop_toBottomOf="@id/gracias"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintBottom_toTopOf="@+id/gracias"
+    android:layout_marginTop="100dp" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
