@@ -34,9 +34,10 @@ public class Animales extends AppCompatActivity {
             Toast.makeText(Animales.this, "Encendido", Toast.LENGTH_SHORT).show();
         });
         btn2.setOnClickListener(view -> {
-            viewModel.ledss(0, Animales.this);
+
             btn2.setVisibility(view.INVISIBLE);
             btn1.setVisibility(view.VISIBLE);
+            viewModel.setdata(0);
             Toast.makeText(Animales.this, "Apagado", Toast.LENGTH_SHORT).show();
         });
 

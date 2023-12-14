@@ -1,6 +1,7 @@
 package com.example.hamsterapp.InterfaceRETROFIT;
 
 import com.example.hamsterapp.ModelsRETROFIT.AnimalResponse;
+import com.example.hamsterapp.ModelsRETROFIT.ApagarLed;
 import com.example.hamsterapp.ModelsRETROFIT.ApiResponse;
 import com.example.hamsterapp.ModelsRETROFIT.InfoUsuario;
 import com.example.hamsterapp.ModelsRETROFIT.JaulaData;
@@ -53,7 +54,11 @@ public interface JsonPlaceHolderApi {
     @POST("logout")
     Call<Void> logout(@Header("Authorization") String token);
 
-    @POST("http/encenderled")
-    Call<LedsData> getLeds(@Header("Authorization") String token, @Body LedsData ledsData);
-}
+    @POST("http/led")
+    Call<LedsData> getLeds(@Body LedsData ledsData);
 
+    @POST("http/apagarled")
+    Call<ApagarLed> getLeds(@Body ApagarLed apagarLed);
+
+
+}
