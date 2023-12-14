@@ -30,7 +30,7 @@
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
+            android:layout_marginStart="35dp"
             android:shadowColor="@color/black"
             android:shadowDx="1"
             android:shadowDy="3"
@@ -44,12 +44,18 @@
 
             />
 
+        <ImageView
+            android:id="@+id/foco"
+            android:layout_width="50dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/bombilla" />
 
         <ImageView
             android:id="@+id/agregar"
             android:layout_width="50dp"
             android:layout_height="70dp"
-            android:layout_marginStart="70dp"
             android:layout_marginEnd="10dp"
             android:src="@drawable/mas"
             app:tint="@color/black" />

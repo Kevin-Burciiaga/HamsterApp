@@ -1,5 +1,6 @@
 package com.example.hamsterapp;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.hamsterapp.SharedPreferences.Token;
@@ -48,7 +50,13 @@ EditText etEmail, etPassword;
                 loginViewModel.login(Login.this);
             }
         });
+        RequestPermission();
+    }
 
+    public void RequestPermission(){
+        if (ContextCompat.checkSelfPermission(Login.this, android.Manifest.permission.POST_NOTIFICATIONS) != getPackageManager().PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, 50);
+        }
     }
 
     public void revisarSesion(){

@@ -5,6 +5,7 @@ import com.example.hamsterapp.ModelsRETROFIT.ApiResponse;
 import com.example.hamsterapp.ModelsRETROFIT.InfoUsuario;
 import com.example.hamsterapp.ModelsRETROFIT.JaulaData;
 import com.example.hamsterapp.ModelsRETROFIT.JaulasResponse;
+import com.example.hamsterapp.ModelsRETROFIT.LedsData;
 import com.example.hamsterapp.ModelsRETROFIT.LoginData;
 import com.example.hamsterapp.ModelsRETROFIT.RegistroData;
 import com.example.hamsterapp.ModelsRETROFIT.SensorData;
@@ -51,5 +52,8 @@ public interface JsonPlaceHolderApi {
 
     @POST("logout")
     Call<Void> logout(@Header("Authorization") String token);
+
+    @POST("http/encenderled")
+    Call<LedsData> getLeds(@Header("Authorization") String token, @Body LedsData ledsData);
 }
 

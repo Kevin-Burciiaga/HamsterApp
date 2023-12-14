@@ -51,7 +51,7 @@ public class Activity1Activity extends AppCompatActivity {
 
         JsonPlaceHolderApi jsonPlaceHolderApi = Singleton.getRetrofitInstance().create(JsonPlaceHolderApi.class);
 
-        viewModel.fetchSensorData(idJaula, token );
+        viewModel.fetchSensorData(idJaula, token);
 
         viewModel.getSensorDataList().observe(this, sensorDataList -> {
             updateUI(sensorDataList);
@@ -66,7 +66,7 @@ public class Activity1Activity extends AppCompatActivity {
         for (SensorData sensorData : sensorDataList) {
             switch (sensorData.getSensor()) {
                 case "temperatura":
-                    txtTemp.setText(sensorData.getLastValue()+ "°C");
+                    txtTemp.setText(sensorData.getLastValue() + "°C");
                     break;
                 case "humedad":
                     txtHum.setText(sensorData.getLastValue() + "%");
@@ -83,20 +83,21 @@ public class Activity1Activity extends AppCompatActivity {
                     }
                 case "movimien":
                     if (sensorData.getLastValue().equals("1")) {
-                        txtmov.setText("Moviento detectado");
-                    }
-                    else{
+                        txtmov.setText("Tu hamster se esta moviendo");
+                    } else {
                         txtmov.setText("Sin movimiento");
                     }
                     break;
                 case "ultrasonico":
                     txtuts.setText(sensorData.getLastValue() + "cm");
+                    if (Double.parseDouble(sensorData.getLastValue()) > 4) {
+                        Toast.makeText(this, "Llenar el dispensador del agua", Toast.LENGTH_SHORT).show();
+                    }
                     break;
                 case "infrarrojo":
                     if (sensorData.getLastValue().equals("1")) {
-                      txtinf.setText("Infrarrojo detectado");
-                    }
-                    else{
+                        txtinf.setText("Infrarrojo detectado");
+                    } else {
                         txtinf.setText("Sin infrarrojo");
                     }
                     break;

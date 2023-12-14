@@ -10,13 +10,24 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#FF804000">
+
+        <ImageView
+            android:layout_weight=".1"
+            android:id="@+id/atras"
+            android:layout_width="50dp"
+            android:layout_height="80dp"
+            android:src="@drawable/pa_atras"
+            app:tint="@color/white" />
 
         <TextView
+            android:layout_weight=".9"
             android:id="@+id/textView5"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Animales"
+            android:text="LEDS"
+            android:layout_gravity="center"
             android:textAlignment="center"
             android:textSize="35sp"
             android:textColor="@color/white"
@@ -30,12 +41,37 @@
 
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerviewA"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/btn1"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="20dp"
-        android:layout_marginTop="10dp"/>
+        android:text="ENCENDER"
+        android:layout_gravity="center"
+        android:textSize="30sp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/botones"
+        />
+
+    <Button
+        android:id="@+id/btn2"
+        android:layout_marginTop="40dp"
+        android:layout_width="250dp"
+        android:text="APAGAR"
+        android:textSize="30sp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/botones"
+        android:visibility="invisible"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/foco_a"
+        app:lottie_loop="true"
+        />
+
 
 </LinearLayout>

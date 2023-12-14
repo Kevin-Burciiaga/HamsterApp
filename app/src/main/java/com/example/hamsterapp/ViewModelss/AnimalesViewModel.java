@@ -1,53 +1,58 @@
 package com.example.hamsterapp.ViewModelss;
 
-import android.app.Application;
+import android.content.Context;
+import android.util.Log;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 import com.example.hamsterapp.InterfaceRETROFIT.JsonPlaceHolderApi;
-import com.example.hamsterapp.Models.Animal;
-import com.example.hamsterapp.ModelsRETROFIT.AnimalResponse;
+import com.example.hamsterapp.ModelsRETROFIT.LedsData;
 import com.example.hamsterapp.RetrofitSingletonn.Singleton;
-
-import java.util.List;
+import com.example.hamsterapp.SharedPreferences.Token;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class AnimalesViewModel extends AndroidViewModel {
-    private final MutableLiveData<List<Animal>> animalList = new MutableLiveData<>();
-    private final MutableLiveData<String> errorMessage = new MutableLiveData<>();
+public class AnimalesViewModel extends ViewModel {
 
-    public AnimalesViewModel(@NonNull Application application) {
-        super(application);
-        getAnimales();
+private MutableLiveData <Integer> led_value = new MutableLiveData<>();
+
+    public MutableLiveData<Integer> getLed_value() {
+        return led_value;
     }
 
-    public MutableLiveData<List<Animal>> getAnimalList() {
-        return animalList;
+    public void setLed_value(MutableLiveData<Integer> led_value) {
+        this.led_value = led_value;
     }
 
-    public MutableLiveData<String> getErrorMessage() {
-        return errorMessage;
-    }
-
-    public void getAnimales(){
+    public void ledss(int led_value, Context context){
+        LedsData ledsData = new LedsData(led_value);
+        String estado;
+        if (led_value == 1){
+            estado = "Encendido";
+        }
+        else {
+            estado = "Apagagado";
+        }
+        String token = Token.getToken(context);
         Retrofit retrofit = Singleton.getRetrofitInstance();
         JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create(JsonPlaceHolderApi.class);
-        jsonPlaceHolderApi.getAnimals().enqueue(new Callback<AnimalResponse>() {
+        Call<LedsData> call = jsonPlaceHolderApi.getLeds(token, ledsData);
+        call.enqueue(new Callback<LedsData>() {
             @Override
-            public void onResponse(Call<AnimalResponse> call, Response<AnimalResponse> response) {
-                if (response.isSuccessful() && response.body() != null && response.body().getAnimals() != null) {
-                    animalList.setValue(response.body().getAnimals());
+            public void onResponse(Call<LedsData> call, Response<LedsData> response) {
+                if (response.isSuccessful()){
+                    LedsData ledsData1 = response.body();
+                    setLed_value(new MutableLiveData<>(ledsData1.getLed_value()));
                 }
                 else {
                     try {
                         String error = response.errorBody().string();
-                        getErrorMessage().setValue(error);
+                        Log.d("Error", "onResponse: "+error);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -55,11 +60,10 @@ public class AnimalesViewModel extends AndroidViewModel {
             }
 
             @Override
-            public void onFailure(Call<AnimalResponse> call, Throwable t) {
-                errorMessage.setValue("Error en la solicitud de animales");
+            public void onFailure(Call<LedsData> call, Throwable t) {
+                Log.d("Error", "onFailure: "+t.getMessage());
             }
         });
-
     }
 
 }

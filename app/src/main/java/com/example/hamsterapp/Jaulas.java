@@ -21,7 +21,7 @@ public class Jaulas extends AppCompatActivity {
 private JaulasViewModel viewModel;
     private RecyclerView recyclerView;
     private JaulaAdapter jaulaAdapter;
-    ImageView agregar, us;
+    ImageView agregar, us, foco;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +30,8 @@ private JaulasViewModel viewModel;
 
         recyclerView = findViewById(R.id.recyclerviewJaulas);
         agregar = findViewById(R.id.agregar);
+        foco = findViewById(R.id.foco);
+
         us = findViewById(R.id.us);
         viewModel = new ViewModelProvider(this).get(JaulasViewModel.class);
 
@@ -38,10 +40,16 @@ private JaulasViewModel viewModel;
             startActivity(i);
         });
 
+        foco.setOnClickListener(v -> {
+            Intent i = new Intent(Jaulas.this, Animales.class);
+            startActivity(i);
+        });
+
         us.setOnClickListener(v -> {
             Intent i = new Intent(Jaulas.this, InfoUser.class);
             startActivity(i);
         });
+
 
         viewModel.getJaulaList().observe(this, jaulaList -> {
             if (jaulaList == null || jaulaList.isEmpty()) {
